@@ -1,0 +1,8 @@
+package edu.jsp.Banking_app.exception;
+
+public class LoanBusinessException extends RuntimeException {
+
+    public LoanBusinessException(String message) {
+        super(message);
+    }
+}
