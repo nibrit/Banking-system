@@ -70,4 +70,19 @@ public class GlobalException {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ex.getMessage());
     }
+    @ExceptionHandler(LoanBusinessException.class)
+public ResponseEntity<String> handleLoanBusinessException(
+        LoanBusinessException ex) {
+
+    return ResponseEntity
+            .status(HttpStatus.CONFLICT)
+            .body(ex.getMessage());
+}@ExceptionHandler(LoanBusinessException.class)
+public ResponseEntity<String> handleLoanBusinessException(
+        LoanBusinessException ex) {
+
+    return ResponseEntity
+            .status(HttpStatus.CONFLICT)
+            .body(ex.getMessage());
+}
 }
