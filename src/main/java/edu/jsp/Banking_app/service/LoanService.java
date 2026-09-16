@@ -7,8 +7,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import edu.jsp.Banking_app.exception.LoanBusinessException;
 
 import edu.jsp.Banking_app.entity.Account;
+import edu.jsp.Banking_app.entity.AccountStatus;
 import edu.jsp.Banking_app.entity.Loan;
 import edu.jsp.Banking_app.entity.LoanStatus;
 import edu.jsp.Banking_app.entity.Transaction;
@@ -84,7 +86,7 @@ public class LoanService {
         Loan loan = getLoan(loanId);
 
         if (loan.getStatus() != LoanStatus.PENDING) {
-            throw new IllegalStateException(
+            throw new LoanBusinessException(
                     "Only pending loans can be approved");
         }
 
@@ -103,7 +105,7 @@ public class LoanService {
         Loan loan = getLoan(loanId);
 
         if (loan.getStatus() != LoanStatus.PENDING) {
-            throw new IllegalStateException(
+            throw new LoanBusinessException(
                     "Only pending loans can be rejected");
         }
 
@@ -124,7 +126,7 @@ public class LoanService {
         Loan loan = getLoan(loanId);
 
         if (loan.getStatus() != LoanStatus.APPROVED) {
-            throw new IllegalStateException(
+            throw new LoanBusinessException(
                     "Only approved loans can be disbursed");
         }
 
@@ -135,10 +137,14 @@ public class LoanService {
                                 "accountId",
                                 accountId));
 
-        // Make sure the account belongs to the loan applicant
+        // Make sure the account belongs to the loan applicants
         if (loan.getUser().getId() != account.getUser().getId()) {
             throw new IllegalArgumentException(
                     "Account does not belong to loan applicant");
+        }
+        if (account.getStatus() != AccountStatus.ACTIVE) {
+            throw new LoanBusinessException(
+                    "Loan cannot be disbursed to a closed account");
         }
 
         // Add loan amount to account
@@ -182,14 +188,14 @@ public class LoanService {
         verifyUserAccess(loan.getUser().getId());
 
         if (loan.getStatus() != LoanStatus.ACTIVE) {
-            throw new IllegalStateException(
+            throw new LoanBusinessException(
                     "Loan is not active");
         }
 
         Account account = loan.getAccount();
 
         if (account == null) {
-            throw new IllegalStateException(
+            throw new LoanBusinessException(
                     "Loan is not linked to an account");
         }
 
