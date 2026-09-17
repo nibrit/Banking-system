@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Banking App - Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         TOP BAR
+         ========================= -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>Banking App</h1>
+        </div>
+
+        <div class="user-section">
+
+            <span id="userEmail"></span>
+
+            <button id="logoutButton">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         DASHBOARD
+         ========================= -->
+
+    <main class="dashboard-container">
+
+
+        <!-- Welcome -->
+
+        <section class="welcome-section">
+
+            <h2>Dashboard</h2>
+
+            <p>
+                Manage your accounts and transactions.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             MY ACCOUNTS
+             ========================= -->
+
+        <section class="accounts-section">
+
+            <div class="section-header">
+
+                <h2>My Accounts</h2>
+
+                <button id="openAccountButton">
+                    + Open New Account
+                </button>
+
+            </div>
+
+
+            <div
+                id="accountsContainer"
+                class="accounts-container">
+
+                <p>
+                    Loading accounts...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             OPEN ACCOUNT
+             ========================= -->
+
+        <div
+            id="openAccountSection"
+            class="form-section">
+
+            <h2>
+                Open New Account
+            </h2>
+
+            <form id="openAccountForm">
+
+
+                <label for="newAccountNumber">
+                    Account Number
+                </label>
+
+                <input
+                    type="number"
+                    id="newAccountNumber"
+                    placeholder="Enter account number"
+                    required
+                >
+
+
+                <label for="newAccountType">
+                    Account Type
+                </label>
+
+                <select
+                    id="newAccountType"
+                    required>
+
+                    <option value="SAVINGS">
+                        Savings
+                    </option>
+
+                    <option value="CURRENT">
+                        Current
+                    </option>
+
+                </select>
+
+
+                <button type="submit">
+                    Open Account
+                </button>
+
+
+                <p id="openAccountMessage"></p>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             QUICK ACTIONS
+             ========================= -->
+
+        <section class="quick-actions-section">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+
+            <div class="quick-actions">
+
+
+                <button
+                    class="action-card"
+                    id="depositButton">
+
+                    Deposit
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="withdrawButton">
+
+                    Withdraw
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="transferButton">
+
+                    Transfer
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    id="transactionsButton">
+
+                    Transactions
+
+                </button>
+
+
+            </div>
+
+        </section>
+        <!-- =========================================================
+     LOANS SECTION
+     ========================================================= -->
+
+<section class="loans-section">
+
+    <div class="section-header">
+        <h2>My Loans</h2>
+
+        <button id="openLoanButton">
+            + Apply for Loan
+        </button>
+    </div>
+
+    <div id="loansContainer" class="loans-container">
+
+        <p class="empty-message">
+            Loading loans...
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     APPLY LOAN FORM
+     ========================================================= -->
+
+<div id="loanApplicationSection" class="form-section">
+
+    <div class="form-header">
+        <h2>Apply for a Loan</h2>
+
+        <button
+            type="button"
+            id="closeLoanFormButton"
+            class="close-form-button">
+            ×
+        </button>
+    </div>
+
+    <form id="loanApplicationForm">
+
+        <div class="form-group">
+
+            <label for="loanAmount">
+                Loan Amount
+            </label>
+
+            <input
+                type="number"
+                id="loanAmount"
+                placeholder="Enter loan amount"
+                min="1"
+                step="0.01"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="loanInterestRate">
+                Interest Rate (%)
+            </label>
+
+            <input
+                type="number"
+                id="loanInterestRate"
+                placeholder="e.g. 10"
+                min="0"
+                max="100"
+                step="0.01"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="loanTenure">
+                Tenure (Months)
+            </label>
+
+            <input
+                type="number"
+                id="loanTenure"
+                placeholder="e.g. 12"
+                min="1"
+                required>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="primary-button">
+            Apply for Loan
+        </button>
+
+    </form>
+
+    <p
+        id="loanApplicationMessage"
+        class="form-message">
+    </p>
+
+</div>
+
+
+        <!-- =========================
+             DEPOSIT
+             ========================= -->
+
+        <div
+            id="depositSection"
+            class="form-section">
+
+            <h2>
+                Deposit Money
+            </h2>
+
+
+            <form id="depositForm">
+
+
+                <label for="depositAccount">
+                    Account
+                </label>
+
+                <select
+                    id="depositAccount"
+                    required>
+
+                </select>
+
+
+                <label for="depositAmount">
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="depositAmount"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required
+                >
+
+
+                <button type="submit">
+                    Deposit
+                </button>
+
+
+                <p id="depositMessage"></p>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             WITHDRAW
+             ========================= -->
+
+        <div
+            id="withdrawSection"
+            class="form-section">
+
+            <h2>
+                Withdraw Money
+            </h2>
+
+
+            <form id="withdrawForm">
+
+
+                <label for="withdrawAccount">
+                    Account
+                </label>
+
+                <select
+                    id="withdrawAccount"
+                    required>
+
+                </select>
+
+
+                <label for="withdrawAmount">
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="withdrawAmount"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required
+                >
+
+
+                <button type="submit">
+                    Withdraw
+                </button>
+
+
+                <p id="withdrawMessage"></p>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSFER
+             ========================= -->
+
+        <div
+            id="transferSection"
+            class="form-section">
+
+            <h2>
+                Transfer Money
+            </h2>
+
+
+            <form id="transferForm">
+
+
+                <label for="transferFromAccount">
+                    From Account
+                </label>
+
+                <select
+                    id="transferFromAccount"
+                    required>
+
+                </select>
+
+
+                <label for="transferToAccount">
+                    Recipient Account ID
+                </label>
+
+                <input
+                    type="number"
+                    id="transferToAccount"
+                    min="1"
+                    placeholder="Enter recipient account ID"
+                    required
+                >
+
+
+                <label for="transferAmount">
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="transferAmount"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required
+                >
+
+
+                <button type="submit">
+                    Transfer
+                </button>
+
+
+                <p id="transferMessage"></p>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             TRANSACTION HISTORY
+             ========================= -->
+
+        <div
+            id="transactionsSection"
+            class="form-section">
+
+            <h2>
+                Transaction History
+            </h2>
+
+
+            <label for="transactionAccount">
+                Account
+            </label>
+
+            <select
+                id="transactionAccount">
+
+            </select>
+
+
+            <div id="transactionsContainer">
+
+                <p>
+                    Select an account to view transactions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
