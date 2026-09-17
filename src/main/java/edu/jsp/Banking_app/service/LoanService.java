@@ -342,6 +342,10 @@ public class LoanService {
             throw new IllegalArgumentException(
                     "Interest rate cannot be negative");
         }
+        if (loan.getInterestRate().compareTo(BigDecimal.valueOf(100)) > 0) {
+    throw new LoanBusinessException(
+            "Interest rate cannot exceed 100%");
+}
 
         if (loan.getTenureMonths() <= 0) {
 
