@@ -139,7 +139,7 @@ public class LoanService {
 
         // Make sure the account belongs to the loan applicants
         if (loan.getUser().getId() != account.getUser().getId()) {
-            throw new IllegalArgumentException(
+            throw new LoanBusinessException(
                     "Account does not belong to loan applicant");
         }
         if (account.getStatus() != AccountStatus.ACTIVE) {
